@@ -91,4 +91,24 @@ angular.module('jui', [])
         $(element).draggable(options);
       }
     };
+  })
+  .directive('juiProgressbar', function(){
+    return {
+      restrict: 'A',
+      scope: {
+        value: '='
+      },
+      link: function postLink(scope, element, attrs) {
+        var options = {
+          value: scope.value
+        };
+
+        // Register a $watch on value to update the widget
+        scope.$watch('value', function(){
+          $(element).progressbar("value", parseInt(scope.value, 10));
+        });
+
+        $(element).progressbar(options);
+      }
+    };
   });
