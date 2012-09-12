@@ -166,7 +166,7 @@
         return {
             restrict:'A',
             scope:getScopeDefinition(eventNames, optionNames),
-            link: getDefaultLinkFunc('buttonset', eventNames, optionNames)
+            link:getDefaultLinkFunc('buttonset', eventNames, optionNames)
         };
     });
 
@@ -182,7 +182,25 @@
         return {
             restrict:'A',
             scope:getScopeDefinition(eventNames, optionNames),
-            link:getDefaultLinkFunc('progressbar', eventNames, optionNames)
+            link:function (scope, element, attrs) {
+                var options = {};
+
+                $(optionNames).each(function (i, optionName) {
+                    options[optionName] = scope[optionName];
+                    scope.$watch(optionName, function (newValue, oldValue) {
+                        if(optionName === 'value'){
+                            newValue = parseInt(newValue, 10);
+                        }
+                        $(element).progressbar('option', optionName, newValue);
+                    });
+                });
+
+                // Assign events to the options hash.
+                assignEvents(scope, options, eventNames);
+
+                // Apply the plugin
+                $(element).progressbar(options);
+            }
         };
     });
 

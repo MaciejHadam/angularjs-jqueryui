@@ -1,20 +1,21 @@
 <div style="width: 500px; height: 300px; border: 1px solid red;">
-  <div jui:draggable scroll="true" scrollSensitivity="100" scrollSpeed="100" revert="true" helper="'clone'" style="width: 100px; height: 100px; background: #eee;">
+  <div jui:draggable opt:scroll="true" opt:scrollSensitivity="100" opt:scrollSpeed="100" opt:revert="true" opt:helper="'clone'" style="width: 100px; height: 100px; background: #eee;">
     teste
   </div>
 </div>
 
 <input ng:model="value" ng:init="value=30" />
-<div jui:progressbar value="value"></div>
-<button jui:button label="'Hello'"></button>
+{{value}}
+<div jui:progressbar opt:value="value"></div>
+<button jui:button opt:label="'Hello'"></button>
 
-<div jui:buttonset disabled="true">
+<div jui:buttonset opt:disabled="true">
   <input type="checkbox" id="check1" /><label for="check1">B</label>
   <input type="checkbox" id="check2" /><label for="check2">I</label>
   <input type="checkbox" id="check3" /><label for="check3">U</label>
 </div>
 
 <div jui:buttonset>
-  <button jui:button label="'Hello1'"></button>
-  <a jui:button label="'Hello2'"></a>
+  <button jui:button opt:label="'Hello1'"></button>
+  <a jui:button opt:label="'Hello2'"></a>
 </div>
