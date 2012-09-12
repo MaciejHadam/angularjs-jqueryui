@@ -20,11 +20,10 @@ describe('Module: jui', function () {
         }));
 
         it('should trigger dragcreate event', inject(function ($rootScope, $compile) {
-            element = angular.element('<div jui:draggable on:create="onCreate"></div>');
+            element = angular.element('<div jui:draggable event:create="onCreate"></div>');
 
             $rootScope.hello = 'Hello';
-            $rootScope.onCreate = function () {
-            }
+            $rootScope.onCreate = function () {}
 
             spyOn($rootScope, 'onCreate').andCallThrough();
             element = $compile(element)($rootScope);
@@ -97,6 +96,17 @@ describe('Module: jui', function () {
             $rootScope.$digest();
             expect($(element).droppable('option', 'activeClass')).toBe('ui-state-highlight2');
         }));
+    });
+
+    describe('Module: jui:resizable', function () {
+        var element;
+
+        it('should apply the zero-configuration usage of resizable plugin', inject(function ($rootScope, $compile) {
+            element = angular.element('<div jui:resizable></div>');
+            element = $compile(element)($rootScope);
+            expect($(element).is('.ui-resizable')).toBeTruthy();
+        }));
+
     });
 
 });
